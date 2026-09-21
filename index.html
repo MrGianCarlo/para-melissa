@@ -169,6 +169,33 @@
       animation: fadeIn 1.2s ease-out forwards;
     }
 
+    .scroll-indicator {
+      position: absolute;
+      top: calc(100vh - 110px);
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      color: #FDF4E3;
+      font-family: 'Caveat', cursive;
+      font-size: 1.5rem;
+      z-index: 5;
+      animation: fadeInBounce 2s infinite ease-in-out;
+      opacity: 0;
+      animation-delay: 4.5s;
+      animation-fill-mode: forwards;
+    }
+    
+    .scroll-indicator .arrow {
+      font-size: 1.8rem;
+      margin-top: -5px;
+    }
+
+    @keyframes fadeInBounce {
+      0% { transform: translate(-50%, 0); opacity: 0.6; }
+      50% { transform: translate(-50%, 12px); opacity: 1; }
+      100% { transform: translate(-50%, 0); opacity: 0.6; }
+    }
+
     .delay-1 {
       animation-delay: 0.2s;
     }
@@ -721,6 +748,11 @@
   </div>
 
   <div class="petal-field" id="petalField" aria-hidden="true"></div>
+
+  <div class="scroll-indicator">
+    <span>desliza hacia abajo</span>
+    <div class="arrow">↓</div>
+  </div>
 
   <main>
     <header class="hero fade-in">
