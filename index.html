@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Para Melissa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Quicksand:wght@400;500;600&family=Caveat:wght@500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="van-gogh.css">
+  <style>
+    :root {
+      --bg: #FFFBF1;
+      --bg-soft: #FFF3D6;
+      --ink: #4A3A20;
+      --ink-soft: #8A7550;
+      --petal: #F6C445;
+      --petal-deep: #E8A63B;
+      --center: #7A4E23;
+      --leaf: #7A9459;
+      --card: #FFFFFF;
+      --line: #EAD9A8;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #241A0E;
+        --bg-soft: #2E2110;
+        --ink: #F5E9CE;
+        --ink-soft: #C9B78E;
+        --petal: #F2C24B;
+        --petal-deep: #D99A2E;
+        --center: #5A3A1C;
+        --leaf: #6E8A52;
+        --card: #2C2113;
+        --line: #4A3A20;
+      }
+    }
+
+    :root[data-theme="dark"] {
+      --bg: #241A0E;
+      --bg-soft: #2E2110;
+      --ink: #F5E9CE;
+      --ink-soft: #C9B78E;
+      --petal: #F2C24B;
+      --petal-deep: #D99A2E;
+      --center: #5A3A1C;
+      --leaf: #6E8A52;
+      --card: #2C2113;
+      --line: #4A3A20;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-padding-top: env(safe-area-inset-top, 0px);
+    }
+
+    body {
+      margin: 0;
+      background: transparent;
+      color: #F5E9CE;
+      font-family: 'Quicksand', sans-serif;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .petal-field {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .petal {
+      position: absolute;
+      top: -40px;
+      opacity: 0.55;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(300deg);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .petal {
+        animation: none;
+        display: none;
+      }
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 640px;
+      margin: 100vh auto 3rem auto;
+      padding: 4rem 2rem 5rem;
+      background: rgba(12, 22, 45, 0.65);
+      backdrop-filter: blur(8px);
+      border-radius: 16px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+      color: #F5E9CE;
+    }
+
+    main * {
+      color: inherit;
+    }
+
+    .subtitle,
+    .frame-caption {
+      color: #C9B78E !important;
+    }
+
+    .divider {
+      color: #8A7550 !important;
+    }
+
+    .divider .line {
+      background: #8A7550 !important;
+    }
+
+    .frame {
+      background: rgba(30, 40, 60, 0.8) !important;
+      border-color: #4A5D23 !important;
+    }
+
+    header.hero {
+      text-align: center;
+      padding-bottom: 2.5rem;
+    }
+
+    .flower-mark {
+      width: 200px;
+      height: 200px;
+      margin: 0 auto 1.25rem;
+      filter: drop-shadow(0 12px 24px rgba(122, 78, 35, 0.25));
+      animation: float-flower 6s ease-in-out infinite;
+      transition: filter 0.3s ease;
+    }
+
+    .flower-mark:hover {
+      filter: drop-shadow(0 16px 32px rgba(232, 166, 59, 0.4)) brightness(1.05);
+    }
+
+    @keyframes float-flower {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(0deg) scale(1);
+      }
+
+      50% {
+        transform: translateY(-10px) rotate(4deg) scale(1.02);
+      }
+    }
+
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn 1.2s ease-out forwards;
+    }
+
+    .delay-1 {
+      animation-delay: 0.2s;
+    }
+
+    .delay-2 {
+      animation-delay: 0.4s;
+    }
+
+    .delay-3 {
+      animation-delay: 0.6s;
+    }
+
+    .delay-4 {
+      animation-delay: 0.8s;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 500;
+      font-size: clamp(2.4rem, 9vw, 3.4rem);
+      margin: 0;
+      color: var(--ink);
+    }
+
+    .subtitle {
+      font-family: 'Caveat', cursive;
+      font-size: 1.6rem;
+      color: var(--petal-deep);
+      margin-top: 0.4rem;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      margin: 2.2rem 0;
+      color: var(--line);
+    }
+
+    .divider .line {
+      flex: 1;
+      max-width: 90px;
+      height: 1px;
+      background: var(--line);
+    }
+
+    .quote {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.3rem, 5vw, 1.7rem);
+      line-height: 1.5;
+      color: var(--ink);
+      margin: 0 auto 1.8rem;
+      max-width: 30ch;
+    }
+
+    p.note {
+      text-align: left;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #FDF4E3;
+      max-width: 55ch;
+      margin: 0 auto 1.5rem auto;
+    }
+
+    section.gallery {
+      margin-top: 3.5rem;
+    }
+
+    .gallery h2 {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-weight: 500;
+      font-size: 1.5rem;
+      margin-bottom: 1.8rem;
+      color: var(--ink);
+    }
+
+    .carousel {
+      position: relative;
+      max-width: 320px;
+      margin: 0 auto;
+    }
+
+    .carousel-track {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      gap: 0;
+      border-radius: 4px;
+      scrollbar-width: none;
+    }
+
+    .carousel-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    .frame {
+      flex: 0 0 100%;
+      scroll-snap-align: center;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 0.8rem 0.8rem 1.2rem;
+      box-shadow: 0 8px 24px rgba(122, 78, 35, 0.12);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .frame:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(122, 78, 35, 0.2);
+    }
+
+    .car-btn {
+      position: absolute;
+      top: 42%;
+      transform: translateY(-50%);
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      background: var(--card);
+      color: var(--ink);
+      font-size: 1.2rem;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(122, 78, 35, 0.12);
+    }
+
+    .car-btn.prev {
+      left: -14px;
+    }
+
+    .car-btn.next {
+      right: -14px;
+    }
+
+    .car-btn:focus-visible {
+      outline: 2px solid var(--petal-deep);
+      outline-offset: 2px;
+    }
+
+    .dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1.2rem;
+      flex-wrap: wrap;
+      max-width: 280px;
+      margin-inline: auto;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--line);
+      border: none;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .dot.active {
+      background: var(--petal-deep);
+    }
+
+    .frame-photo {
+      aspect-ratio: 4 / 5;
+      border: 1.5px dashed var(--line);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-soft);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .frame-photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.05);
+      pointer-events: none;
+      border-radius: 6px;
+    }
+
+    .frame-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .frame-caption {
+      text-align: center;
+      font-family: 'Caveat', cursive;
+      font-size: 1.15rem;
+      color: var(--ink-soft);
+      margin-top: 0.5rem;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 4rem;
+    }
+
+    footer .sign {
+      font-family: 'Caveat', cursive;
+      font-size: 1.5rem;
+      color: var(--petal-deep);
+    }
+
+    .click-heart {
+      position: fixed;
+      z-index: 5;
+      pointer-events: none;
+      will-change: transform, opacity;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="van-gogh-garden">
+    <div class="night"></div>
+    <svg style="width:0;height:0;position:absolute;">
+      <filter id="van-gogh">
+        <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" result="noise" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+    </svg>
+    <div class="flowers">
+      <div class="flower flower--1">
+        <div class="flower__leafs flower__leafs--1">
+          <div class="flower__white-circle"></div>
+          <div class="flower__light flower__light--1"></div>
+          <div class="flower__light flower__light--2"></div>
+          <div class="flower__light flower__light--3"></div>
+          <div class="flower__light flower__light--4"></div>
+          <div class="flower__light flower__light--5"></div>
+          <div class="flower__light flower__light--6"></div>
+          <div class="flower__light flower__light--7"></div>
+          <div class="flower__light flower__light--8"></div>
+        </div>
+        <div class="flower__line">
+          <div class="flower__line__leaf flower__line__leaf--1"></div>
+          <div class="flower__line__leaf flower__line__leaf--2"></div>
+          <div class="flower__line__leaf flower__line__leaf--3"></div>
+          <div class="flower__line__leaf flower__line__leaf--4"></div>
+          <div class="flower__line__leaf flower__line__leaf--5"></div>
+          <div class="flower__line__leaf flower__line__leaf--6"></div>
+        </div>
+      </div>
+      <div class="flower flower--2">
+        <div class="flower__leafs flower__leafs--2">
+          <div class="flower__white-circle"></div>
+          <div class="flower__light flower__light--1"></div>
+          <div class="flower__light flower__light--2"></div>
+          <div class="flower__light flower__light--3"></div>
+          <div class="flower__light flower__light--4"></div>
+          <div class="flower__light flower__light--5"></div>
+          <div class="flower__light flower__light--6"></div>
+          <div class="flower__light flower__light--7"></div>
+          <div class="flower__light flower__light--8"></div>
+        </div>
+        <div class="flower__line">
+          <div class="flower__line__leaf flower__line__leaf--1"></div>
+          <div class="flower__line__leaf flower__line__leaf--2"></div>
+          <div class="flower__line__leaf flower__line__leaf--3"></div>
+          <div class="flower__line__leaf flower__line__leaf--4"></div>
+        </div>
+      </div>
+      <div class="flower flower--3">
+        <div class="flower__leafs flower__leafs--3">
+          <div class="flower__white-circle"></div>
+          <div class="flower__light flower__light--1"></div>
+          <div class="flower__light flower__light--2"></div>
+          <div class="flower__light flower__light--3"></div>
+          <div class="flower__light flower__light--4"></div>
+          <div class="flower__light flower__light--5"></div>
+          <div class="flower__light flower__light--6"></div>
+          <div class="flower__light flower__light--7"></div>
+          <div class="flower__light flower__light--8"></div>
+        </div>
+        <div class="flower__line">
+          <div class="flower__line__leaf flower__line__leaf--1"></div>
+          <div class="flower__line__leaf flower__line__leaf--2"></div>
+          <div class="flower__line__leaf flower__line__leaf--3"></div>
+          <div class="flower__line__leaf flower__line__leaf--4"></div>
+        </div>
+      </div>
+      <div class="flower flower--4">
+        <div class="flower__leafs flower__leafs--4">
+          <div class="flower__white-circle"></div>
+          <div class="flower__light flower__light--1"></div>
+          <div class="flower__light flower__light--2"></div>
+          <div class="flower__light flower__light--3"></div>
+          <div class="flower__light flower__light--4"></div>
+          <div class="flower__light flower__light--5"></div>
+          <div class="flower__light flower__light--6"></div>
+          <div class="flower__light flower__light--7"></div>
+          <div class="flower__light flower__light--8"></div>
+        </div>
+        <div class="flower__line">
+          <div class="flower__line__leaf flower__line__leaf--1"></div>
+          <div class="flower__line__leaf flower__line__leaf--2"></div>
+          <div class="flower__line__leaf flower__line__leaf--3"></div>
+          <div class="flower__line__leaf flower__line__leaf--4"></div>
+        </div>
+      </div>
+      <div class="flower flower--5">
+        <div class="flower__leafs flower__leafs--5">
+          <div class="flower__white-circle"></div>
+          <div class="flower__light flower__light--1"></div>
+          <div class="flower__light flower__light--2"></div>
+          <div class="flower__light flower__light--3"></div>
+          <div class="flower__light flower__light--4"></div>
+          <div class="flower__light flower__light--5"></div>
+          <div class="flower__light flower__light--6"></div>
+          <div class="flower__light flower__light--7"></div>
+          <div class="flower__light flower__light--8"></div>
+        </div>
+        <div class="flower__line">
+          <div class="flower__line__leaf flower__line__leaf--1"></div>
+          <div class="flower__line__leaf flower__line__leaf--2"></div>
+          <div class="flower__line__leaf flower__line__leaf--3"></div>
+          <div class="flower__line__leaf flower__line__leaf--4"></div>
+        </div>
+      </div>
+      <div class="grow-ans" style="--d:1.2s">
+        <div class="flower__g-long">
+          <div class="flower__g-long__top"></div>
+          <div class="flower__g-long__bottom"></div>
+        </div>
+      </div>
+      <div class="growing-grass">
+        <div class="flower__grass flower__grass--1">
+          <div class="flower__grass--top"></div>
+          <div class="flower__grass--bottom"></div>
+          <div class="flower__grass__leaf flower__grass__leaf--1"></div>
+          <div class="flower__grass__leaf flower__grass__leaf--2"></div>
+          <div class="flower__grass__leaf flower__grass__leaf--3"></div>
+          <div class="flower__grass__leaf flower__grass__leaf--4"></div>
+          <div class="flower__grass__leaf flower__grass__leaf--5"></div>
+          <div class="flower__grass__leaf flower__grass__leaf--6"></div>
+          <div class="flower__grass__leaf flower__grass__leaf--7"></div>
+          <div class="flower__grass__leaf flower__grass__leaf--8"></div>
+          <div class="flower__grass__overlay"></div>
+        </div>
+      </div>
+      <div class="growing-grass">
+        <div class="flower__grass flower__grass--2">
+          <div class="flower__grass--top"></div>
+          <div class="flower__grass--bottom"></div>
+          <div class="flower__grass__leaf flower__grass__leaf--1"></div>
+          <div class="flower__grass__leaf flower__grass__leaf--2"></div>
+          <div class="flower__grass__leaf flower__grass__leaf--3"></div>
+          <div class="flower__grass__leaf flower__grass__leaf--4"></div>
+          <div class="flower__grass__leaf flower__grass__leaf--5"></div>
+          <div class="flower__grass__leaf flower__grass__leaf--6"></div>
+          <div class="flower__grass__leaf flower__grass__leaf--7"></div>
+          <div class="flower__grass__leaf flower__grass__leaf--8"></div>
+          <div class="flower__grass__overlay"></div>
+        </div>
+      </div>
+      <div class="grow-ans" style="--d:2.4s">
+        <div class="flower__g-right flower__g-right--1">
+          <div class="leaf"></div>
+        </div>
+      </div>
+      <div class="grow-ans" style="--d:2.8s">
+        <div class="flower__g-right flower__g-right--2">
+          <div class="leaf"></div>
+        </div>
+      </div>
+      <div class="grow-ans" style="--d:2.8s">
+        <div class="flower__g-front">
+          <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--1">
+            <div class="flower__g-front__leaf"></div>
+          </div>
+          <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--2">
+            <div class="flower__g-front__leaf"></div>
+          </div>
+          <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--3">
+            <div class="flower__g-front__leaf"></div>
+          </div>
+          <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--4">
+            <div class="flower__g-front__leaf"></div>
+          </div>
+          <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--5">
+            <div class="flower__g-front__leaf"></div>
+          </div>
+          <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--6">
+            <div class="flower__g-front__leaf"></div>
+          </div>
+          <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--7">
+            <div class="flower__g-front__leaf"></div>
+          </div>
+          <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--8">
+            <div class="flower__g-front__leaf"></div>
+          </div>
+          <div class="flower__g-front__line"></div>
+        </div>
+      </div>
+      <div class="grow-ans" style="--d:3.2s">
+        <div class="flower__g-fr">
+          <div class="leaf"></div>
+          <div class="flower__g-fr__leaf flower__g-fr__leaf--1"></div>
+          <div class="flower__g-fr__leaf flower__g-fr__leaf--2"></div>
+          <div class="flower__g-fr__leaf flower__g-fr__leaf--3"></div>
+          <div class="flower__g-fr__leaf flower__g-fr__leaf--4"></div>
+          <div class="flower__g-fr__leaf flower__g-fr__leaf--5"></div>
+          <div class="flower__g-fr__leaf flower__g-fr__leaf--6"></div>
+          <div class="flower__g-fr__leaf flower__g-fr__leaf--7"></div>
+          <div class="flower__g-fr__leaf flower__g-fr__leaf--8"></div>
+        </div>
+      </div>
+      <div class="long-g long-g--0">
+        <div class="grow-ans" style="--d:3s">
+          <div class="leaf leaf--0"></div>
+        </div>
+        <div class="grow-ans" style="--d:2.2s">
+          <div class="leaf leaf--1"></div>
+        </div>
+        <div class="grow-ans" style="--d:3.4s">
+          <div class="leaf leaf--2"></div>
+        </div>
+        <div class="grow-ans" style="--d:3.6s">
+          <div class="leaf leaf--3"></div>
+        </div>
+      </div>
+      <div class="long-g long-g--1">
+        <div class="grow-ans" style="--d:3.6s">
+          <div class="leaf leaf--0"></div>
+        </div>
+        <div class="grow-ans" style="--d:3.8s">
+          <div class="leaf leaf--1"></div>
+        </div>
+        <div class="grow-ans" style="--d:4s">
+          <div class="leaf leaf--2"></div>
+        </div>
+        <div class="grow-ans" style="--d:4.2s">
+          <div class="leaf leaf--3"></div>
+        </div>
+      </div>
+      <div class="long-g long-g--2">
+        <div class="grow-ans" style="--d:4s">
+          <div class="leaf leaf--0"></div>
+        </div>
+        <div class="grow-ans" style="--d:4.2s">
+          <div class="leaf leaf--1"></div>
+        </div>
+        <div class="grow-ans" style="--d:4.4s">
+          <div class="leaf leaf--2"></div>
+        </div>
+        <div class="grow-ans" style="--d:4.6s">
+          <div class="leaf leaf--3"></div>
+        </div>
+      </div>
+      <div class="long-g long-g--3">
+        <div class="grow-ans" style="--d:4s">
+          <div class="leaf leaf--0"></div>
+        </div>
+        <div class="grow-ans" style="--d:4.2s">
+          <div class="leaf leaf--1"></div>
+        </div>
+        <div class="grow-ans" style="--d:3s">
+          <div class="leaf leaf--2"></div>
+        </div>
+        <div class="grow-ans" style="--d:3.6s">
+          <div class="leaf leaf--3"></div>
+        </div>
+      </div>
+      <div class="long-g long-g--4">
+        <div class="grow-ans" style="--d:4s">
+          <div class="leaf leaf--0"></div>
+        </div>
+        <div class="grow-ans" style="--d:4.2s">
+          <div class="leaf leaf--1"></div>
+        </div>
+        <div class="grow-ans" style="--d:3s">
+          <div class="leaf leaf--2"></div>
+        </div>
+        <div class="grow-ans" style="--d:3.6s">
+          <div class="leaf leaf--3"></div>
+        </div>
+      </div>
+      <div class="long-g long-g--5">
+        <div class="grow-ans" style="--d:4s">
+          <div class="leaf leaf--0"></div>
+        </div>
+        <div class="grow-ans" style="--d:4.2s">
+          <div class="leaf leaf--1"></div>
+        </div>
+        <div class="grow-ans" style="--d:3s">
+          <div class="leaf leaf--2"></div>
+        </div>
+        <div class="grow-ans" style="--d:3.6s">
+          <div class="leaf leaf--3"></div>
+        </div>
+      </div>
+      <div class="long-g long-g--6">
+        <div class="grow-ans" style="--d:4.2s">
+          <div class="leaf leaf--0"></div>
+        </div>
+        <div class="grow-ans" style="--d:4.4s">
+          <div class="leaf leaf--1"></div>
+        </div>
+        <div class="grow-ans" style="--d:4.6s">
+          <div class="leaf leaf--2"></div>
+        </div>
+        <div class="grow-ans" style="--d:4.8s">
+          <div class="leaf leaf--3"></div>
+        </div>
+      </div>
+      <div class="long-g long-g--7">
+        <div class="grow-ans" style="--d:3s">
+          <div class="leaf leaf--0"></div>
+        </div>
+        <div class="grow-ans" style="--d:3.2s">
+          <div class="leaf leaf--1"></div>
+        </div>
+        <div class="grow-ans" style="--d:3.5s">
+          <div class="leaf leaf--2"></div>
+        </div>
+        <div class="grow-ans" style="--d:3.6s">
+          <div class="leaf leaf--3"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="petal-field" id="petalField" aria-hidden="true"></div>
+
+  <main>
+    <header class="hero fade-in">
+      <div class="message fade-in delay-1"
+        style="font-family: 'Caveat', cursive; font-size: 1.8rem; color: #E49B0F; margin-bottom: 1rem;">Estas flores
+        amarillas son para ti</div>
+      <h1 class="fade-in delay-1">Melissa</h1>
+      <div class="subtitle fade-in delay-1">Poco a Poco nuestro Tiempo se esta Dando</div>
+    </header>
+
+    <div class="divider fade-in delay-2"><span class="line"></span>🌼<span class="line"></span></div>
+
+
+    <p class="note fade-in delay-2">A veces siento que decirle “la amo” se queda demasiado pequeño para explicar todo lo
+      que siento por usted. Porque lo que siento por usted no nació solamente de los días bonitos, de los mensajes de
+      buenos días, de las llamadas, de los abrazos, de las risas o de todos esos pequeños momentos que hemos compartido.
+      La amo también conociendo nuestra historia completa. Conociendo lo bonito, pero también lo difícil. Conociendo las
+      heridas, las dudas, los momentos en los que ninguno de los dos supo muy bien qué hacer con todo lo que estaba
+      sintiendo.</p>
+
+    <p class="note fade-in delay-3">Y quizás eso es lo que hace que hoy mi amor por usted sea tan profundo.</p>
+
+    <p class="note fade-in delay-3">Hemos vivido cosas que pudieron habernos separado. Hemos tenido momentos en los que
+      la confianza dolió, en los que hubo preguntas que pesaron demasiado y en los que yo mismo tuve que luchar contra
+      mis pensamientos, mis inseguridades y mis miedos. Hubo cosas que me lastimaron muchísimo y que forman parte de
+      nuestra historia. No quiero fingir que nunca pasaron, porque sería mentirme a mí mismo y también mentirle a usted.
+    </p>
+
+    <p class="note fade-in delay-3">Pero tampoco quiero que lo que nos hizo daño sea lo único que defina nuestra
+      relación.</p>
+
+    <p class="note fade-in delay-3">Porque cuando miro todo lo que hemos vivido, también veo que seguimos aquí.</p>
+
+    <p class="note fade-in delay-4">Veo a la persona con la que sigo queriendo compartir mis días. A la persona a la que
+      todavía quiero contarle cualquier tontería que me pase. A la persona que quiero ver, abrazar, hacer reír, molestar
+      y acompañar. Veo nuestros “buenos días”, nuestros “buenas noches”, nuestros “te amo”, nuestras conversaciones,
+      nuestros planes, nuestras bromas y hasta esas conversaciones tan simples que quizás para cualquier otra persona
+      serían insignificantes, pero que para mí significan muchísimo porque son parte de nuestra vida.</p>
+
+    <p class="note fade-in delay-4">Y últimamente hay algo que me toca especialmente el corazón: pensar en un futuro con
+      usted.</p>
+
+    <p class="note fade-in delay-4">Pensar en nosotros viviendo juntos, organizando nuestras cosas, haciendo cuentas,
+      construyendo poco a poco una vida que sea nuestra. No porque crea que todo será perfecto, sino porque cuando
+      pienso en el futuro, todavía aparezco junto a usted.</p>
+
+    <p class="note fade-in delay-4">Y eso dice muchísimo de lo que siento.</p>
+
+    <p class="note fade-in delay-5">Yo no la amo porque nuestra historia haya sido perfecta. La amo porque, incluso
+      después de conocer las partes difíciles de nuestra historia, mi corazón todavía quiere elegirla para compartir la
+      vida.</p>
+
+    <p class="note fade-in delay-5">La amo por la persona que es, pero también por todo lo que hemos construido juntos.
+      Por cada recuerdo que tenemos. Por cada momento en el que hemos sido felices. Por cada vez que nos hemos buscado
+      después de un día difícil. Por cada abrazo que me hizo sentir que estaba exactamente donde quería estar.</p>
+
+    <p class="note fade-in delay-5">La amo de una manera que a veces hasta me cuesta explicar.</p>
+
+    <p class="note fade-in delay-5">Y quiero que sepa algo: no quiero amarla solamente cuando todo está bien. Quiero
+      aprender a amarla también cuando las cosas sean difíciles. Quiero aprender a escucharla mejor, entenderla mejor,
+      cuidarla mejor y también decirle cuando algo me duele, sin convertir ese dolor en una guerra entre nosotros.</p>
+
+    <p class="note fade-in delay-6">No quiero una relación donde simplemente nos acostumbremos a estar juntos.</p>
+
+    <p class="note fade-in delay-6">Quiero una relación donde sigamos escogiendo estar juntos.</p>
+
+    <p class="note fade-in delay-6">Quiero que algún día podamos mirar hacia atrás y decir: “Pasamos por muchísimo, pero
+      lo construimos juntos”.</p>
+
+    <p class="note fade-in delay-6">No sé qué nos va a traer la vida. No sé cómo vamos a cambiar, qué problemas vamos a
+      enfrentar o qué cosas tendremos que aprender todavía. Pero sí sé algo: hoy, con todo lo que conozco de nuestra
+      historia, la amo.</p>
+
+    <p class="note fade-in delay-6">La amo muchísimo.</p>
+
+    <p class="note fade-in delay-7">Y si alguna vez mis miedos, mis inseguridades o mis errores hicieron que usted no
+      pudiera sentir cuánto la amo, quiero que entienda que detrás de todo eso siempre ha existido un sentimiento muy
+      real: el miedo de perder a alguien que para mí significa demasiado.</p>
+
+    <p class="note fade-in delay-7">No quiero que mi amor sea una prisión para usted ni que tenga que demostrarme
+      constantemente que me ama. Quiero que mi amor sea un lugar donde usted pueda sentirse querida, acompañada y libre
+      de ser usted misma.</p>
+
+    <p class="note fade-in delay-7">Quiero seguir conociéndola incluso después de tantos años. Quiero descubrir nuevas
+      versiones de usted. Quiero estar cuando cumpla sus metas, cuando tenga días increíbles y también cuando tenga días
+      horribles. Quiero celebrar sus logros, apoyarla cuando algo no salga bien y simplemente estar ahí cuando no
+      necesite soluciones, sino compañía.</p>
+
+    <p class="note fade-in delay-8">Porque para mí amar a alguien no es solamente decir “la amo”.</p>
+
+    <p class="note fade-in delay-8">Es querer estar.</p>
+
+    <p class="note fade-in delay-8">Y yo quiero estar.</p>
+
+    <p class="note fade-in delay-8">Quiero estar en sus días buenos y en sus días malos. Quiero estar en las cosas
+      grandes y en las pequeñas. Quiero seguir haciendo recuerdos con usted. Quiero seguir riéndome con usted. Quiero
+      seguir aprendiendo de nosotros.</p>
+
+    <p class="note fade-in delay-9">Y sobre todo, quiero que sepa que, después de todo lo que hemos vivido, después de
+      todo lo que hemos sentido y después de todas las vueltas que ha dado nuestra historia, todavía hay una parte de mí
+      que cuando piensa en amor piensa en usted.</p>
+
+    <p class="note fade-in delay-9">La amo, Melissa.</p>
+
+    <p class="note fade-in delay-9">La amo por lo que hemos sido, por lo que somos y por todo lo que todavía podemos
+      llegar a construir.</p>
+
+    <p class="note fade-in delay-9">Y aunque sé que las palabras nunca van a alcanzar para explicarlo completamente,
+      quiero seguir diciéndoselo, demostrándoselo y construyéndolo con usted.</p>
+
+    <p class="note fade-in delay-9" style="font-weight: 600; font-size: 1.3rem;">La amo muchísimo, mi amor.</p>
+
+    <section class="gallery fade-in delay-4">
+      <h2>Nosotros</h2>
+      <div class="carousel">
+        <div class="carousel-track" id="carouselTrack">
+          <div class="frame">
+            <div class="frame-photo"><img src="photos/1.jpeg" alt="Nosotros"></div>
+            <div class="frame-caption">un momento nuestro</div>
+          </div>
+          <div class="frame">
+            <div class="frame-photo"><img src="photos/2.jpeg" alt="Nosotros"></div>
+            <div class="frame-caption">nuestra luz</div>
+          </div>
+          <div class="frame">
+            <div class="frame-photo"><img src="photos/3.jpeg" alt="Nosotros"></div>
+            <div class="frame-caption">juntos</div>
+          </div>
+          <div class="frame">
+            <div class="frame-photo"><img src="photos/4.jpeg" alt="Nosotros"></div>
+            <div class="frame-caption">sonrisas</div>
+          </div>
+          <div class="frame">
+            <div class="frame-photo"><img src="photos/5.jpeg" alt="Nosotros"></div>
+            <div class="frame-caption">recuerdos</div>
+          </div>
+          <div class="frame">
+            <div class="frame-photo"><img src="photos/6.jpeg" alt="Nosotros"></div>
+            <div class="frame-caption">magia</div>
+          </div>
+          <div class="frame">
+            <div class="frame-photo"><img src="photos/7.jpeg" alt="Nosotros"></div>
+            <div class="frame-caption">compañía</div>
+          </div>
+          <div class="frame">
+            <div class="frame-photo"><img src="photos/8.jpeg" alt="Nosotros"></div>
+            <div class="frame-caption">alegría</div>
+          </div>
+          <div class="frame">
+            <div class="frame-photo"><img src="photos/9.jpeg" alt="Nosotros"></div>
+            <div class="frame-caption">paz</div>
+          </div>
+          <div class="frame">
+            <div class="frame-photo"><img src="photos/10.jpeg" alt="Nosotros"></div>
+            <div class="frame-caption">complicidad</div>
+          </div>
+          <div class="frame">
+            <div class="frame-photo"><img src="photos/11.jpeg" alt="Nosotros"></div>
+            <div class="frame-caption">y otro más</div>
+          </div>
+        </div>
+        <button class="car-btn prev" id="carPrev" aria-label="Foto anterior">‹</button>
+        <button class="car-btn next" id="carNext" aria-label="Foto siguiente">›</button>
+        <div class="dots" id="carDots"></div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="sign">con cariño 🌻</div>
+    </footer>
+  </main>
+
+  <script>
+    (function () {
+      var field = document.getElementById('petalField');
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce) return;
+      var svgFlower = '<svg viewBox="0 0 40 40" width="100%" height="100%">' +
+        '<g fill="var(--petal)">' +
+        '<circle cx="20" cy="8" r="8"/>' +
+        '<circle cx="31" cy="16" r="8"/>' +
+        '<circle cx="27" cy="28" r="8"/>' +
+        '<circle cx="13" cy="28" r="8"/>' +
+        '<circle cx="9" cy="16" r="8"/>' +
+        '</g>' +
+        '<circle cx="20" cy="20" r="7" fill="var(--center)"/>' +
+        '</svg>';
+
+      for (var i = 0; i < 40; i++) {
+        var p = document.createElement('div');
+        p.className = 'petal';
+        p.innerHTML = svgFlower;
+        var size = 18 + Math.random() * 14;
+        p.style.left = (Math.random() * 100) + 'vw';
+        p.style.width = size + 'px';
+        p.style.height = size + 'px';
+        p.style.background = 'transparent';
+        p.style.opacity = (0.5 + Math.random() * 0.4);
+        p.style.animationDuration = (10 + Math.random() * 15) + 's';
+        p.style.animationDelay = (Math.random() * -20) + 's';
+        field.appendChild(p);
+      }
+    })();
+
+    // Carrusel de fotos
+    (function () {
+      var track = document.getElementById('carouselTrack');
+      var prev = document.getElementById('carPrev');
+      var next = document.getElementById('carNext');
+      var dotsWrap = document.getElementById('carDots');
+      var frames = track.children;
+
+      for (var i = 0; i < frames.length; i++) {
+        var dot = document.createElement('button');
+        dot.className = 'dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', 'Ir a la foto ' + (i + 1));
+        (function (idx) {
+          dot.addEventListener('click', function () { goTo(idx); });
+        })(i);
+        dotsWrap.appendChild(dot);
+      }
+      var dots = dotsWrap.children;
+
+      function goTo(idx) {
+        idx = Math.max(0, Math.min(frames.length - 1, idx));
+        track.scrollTo({ left: idx * track.clientWidth, behavior: 'smooth' });
+      }
+      function currentIndex() {
+        return Math.round(track.scrollLeft / track.clientWidth);
+      }
+      function updateDots() {
+        var idx = currentIndex();
+        for (var i = 0; i < dots.length; i++) {
+          dots[i].classList.toggle('active', i === idx);
+        }
+      }
+
+      prev.addEventListener('click', function () { goTo(currentIndex() - 1); });
+      next.addEventListener('click', function () { goTo(currentIndex() + 1); });
+
+      var scrollTimer;
+      track.addEventListener('scroll', function () {
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(updateDots, 80);
+      });
+    })();
+
+    // Corazones al hacer clic
+    (function () {
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var heartPath = 'M12 21s-7.5-4.35-10-9C0.3 8 2.8 4 7 4c2 0 3.7 1.1 5 3 1.3-1.9 3-3 5-3 4.2 0 6.7 4 5 8-2.5 4.65-10 9-10 9z';
+      var colors = ['#E8607A', '#F2C24B', '#D9765A'];
+
+      document.addEventListener('click', function (e) {
+        if (e.target.closest('.car-btn') || e.target.closest('.dot')) return;
+        var count = reduce ? 1 : 3 + Math.floor(Math.random() * 2);
+        for (var i = 0; i < count; i++) {
+          spawnHeart(e.clientX, e.clientY, reduce);
+        }
+      });
+
+      function spawnHeart(x, y, reduce) {
+        var size = 14 + Math.random() * 12;
+        var el = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        el.setAttribute('viewBox', '0 0 24 24');
+        el.setAttribute('width', size);
+        el.setAttribute('height', size);
+        el.classList.add('click-heart');
+        el.style.left = x + 'px';
+        el.style.top = y + 'px';
+        el.style.transform = 'translate(-50%, -50%)';
+        var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path.setAttribute('d', heartPath);
+        path.setAttribute('fill', colors[Math.floor(Math.random() * colors.length)]);
+        el.appendChild(path);
+        document.body.appendChild(el);
+
+        if (reduce) {
+          setTimeout(function () { el.remove(); }, 500);
+          return;
+        }
+
+        var dx = (Math.random() - 0.5) * 70;
+        var dy = -(70 + Math.random() * 70);
+        var anim = el.animate([
+          { transform: 'translate(-50%, -50%) translate(0px, 0px) scale(0.5)', opacity: 1 },
+          { transform: 'translate(-50%, -50%) translate(' + (dx * 0.6) + 'px, ' + (dy * 0.6) + 'px) scale(1)', opacity: 1, offset: 0.5 },
+          { transform: 'translate(-50%, -50%) translate(' + dx + 'px, ' + dy + 'px) scale(0.85)', opacity: 0 }
+        ], { duration: 850 + Math.random() * 350, easing: 'ease-out' });
+        anim.onfinish = function () { el.remove(); };
+      }
+    })();
+  </script>
+
+  <script>
+    // Generador de pétalos de Girasol estilo Van Gogh
+    document.querySelectorAll('.flower__leafs').forEach(flower => {
+      const numPetals = 24;
+      const center = flower.querySelector('.flower__white-circle');
+
+      for (let i = 0; i < numPetals; i++) {
+        const petal = document.createElement('div');
+        petal.classList.add('flower__leaf');
+
+        const angle = i * (360 / numPetals);
+        const rotateX = 10 + Math.random() * 20;
+        const scale = 0.85 + Math.random() * 0.3;
+
+        petal.style.transform = `translate(-50%, 0) rotate(${angle}deg) rotateX(${rotateX}deg) scale(${scale})`;
+
+        flower.insertBefore(petal, center);
+      }
+    });
+  </script>
+</body>
+
+</html>
