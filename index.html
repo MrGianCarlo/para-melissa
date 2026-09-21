@@ -99,17 +99,68 @@
       }
     }
 
-    main {
+    .envelope-wrapper {
       position: relative;
-      z-index: 1;
       max-width: 640px;
       margin: 100vh auto 3rem auto;
-      padding: 4rem 2rem 5rem;
-      background: rgba(12, 22, 45, 0.65);
+      perspective: 1500px;
+      z-index: 2;
+    }
+
+    .envelope-back {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 380px;
+      background: #b5946a; /* color de papel oscuro */
+      border-radius: 12px;
+      z-index: 1;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    main.letter {
+      position: relative;
+      z-index: 2;
+      padding: 4rem 2.5rem 5rem;
+      background: rgba(12, 22, 45, 0.95); /* Menos transparente para legibilidad dentro del sobre */
       backdrop-filter: blur(8px);
-      border-radius: 16px;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+      border-radius: 12px;
       color: #F5E9CE;
+      width: 95%;
+      margin: 0 auto;
+      transform: translateY(20px);
+      transition: transform 1.8s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .envelope-wrapper.open main.letter {
+      transform: translateY(-80px);
+    }
+
+    .envelope-front {
+      position: absolute;
+      top: 130px; left: 0; right: 0;
+      height: 250px;
+      background: #cdad82;
+      z-index: 3;
+      clip-path: polygon(0 0, 50% 40%, 100% 0, 100% 100%, 0 100%);
+      border-radius: 0 0 12px 12px;
+    }
+
+    .envelope-flap {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 200px;
+      background: #dbbd94;
+      z-index: 4;
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      transform-origin: top center;
+      transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1), z-index 1.2s;
+      border-radius: 12px 12px 0 0;
+    }
+
+    .envelope-wrapper.open .envelope-flap {
+      transform: rotateX(180deg);
+      z-index: 1;
     }
 
     main * {
@@ -754,8 +805,10 @@
     <div class="arrow">↓</div>
   </div>
 
-  <main>
-    <header class="hero fade-in">
+  <div class="envelope-wrapper" id="envelopeWrapper">
+    <div class="envelope-back"></div>
+    <main class="letter">
+      <header class="hero fade-in">
       <div class="message fade-in delay-1"
         style="font-family: 'Caveat', cursive; font-size: 1.8rem; color: #E49B0F; margin-bottom: 1rem;">Estas flores
         amarillas son para ti</div>
@@ -923,7 +976,10 @@
     <footer>
       <div class="sign">con cariño 🌻</div>
     </footer>
-  </main>
+    </main>
+    <div class="envelope-front"></div>
+    <div class="envelope-flap"></div>
+  </div>
 
   <script>
     (function () {
@@ -1066,6 +1122,24 @@
         flower.insertBefore(petal, center);
       }
     });
+
+    // Observer para abrir el sobre cuando entra en pantalla
+    const envelope = document.getElementById('envelopeWrapper');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Agregar un pequeño retraso para que se vea más natural
+          setTimeout(() => {
+            envelope.classList.add('open');
+          }, 300);
+          observer.unobserve(envelope);
+        }
+      });
+    }, { threshold: 0.3 }); // Se activa cuando al menos el 30% del sobre es visible
+
+    if (envelope) {
+      observer.observe(envelope);
+    }
   </script>
 </body>
 
